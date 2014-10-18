@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div>
+  {{ object.title }}
+</div>
+{% if next %}
+Next: {{ next.title }}
+{% endif %}
+{% if previous %}
+Previous: {{ previous.title }}
+{% endif %}
+{% endblock %}
