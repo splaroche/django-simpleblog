@@ -8,7 +8,6 @@ except ImportError:
     from django.db.models import TextField
 
 
-
 class Category(models.Model):
     title = models.CharField(max_length=100, unique=True)
     slug = models.SlugField(max_length=100, unique=True)
