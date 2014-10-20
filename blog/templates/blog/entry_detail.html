@@ -1,13 +1,32 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div>
-  {{ object.title }}
-</div>
-{% if next %}
-Next: {{ next.title }}
-{% endif %}
-{% if previous %}
-Previous: {{ previous.title }}
-{% endif %}
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          <h1>{{ object.title }}</h1>
+            <span class="meta">Posted by {{ object.author.first_name }} on {{ object.posted }}</span>
+          {{ object.body|safe }}
+          <ul class="pager">
+            {% if previous %}
+              <li class="previous">
+                <a
+                  href="{{ previous.get_absolute_url }}">Previous: {{ previous.title }}</a>
+              </li>
+            {% endif %}
+            {% if next %}
+              <li class="next">
+                <a href="{{ next.get_absolute_url }}">Next: {{ next.title }}</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <hr>
 {% endblock %}

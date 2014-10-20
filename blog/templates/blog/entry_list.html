@@ -10,12 +10,11 @@
           {{ object.title }}
         </h2>
       </a>
-
-      <p class="post-meta">Posted by <a href="#">Start Bootstrap</a>
+      <p class="post-meta">Posted by {{ object.author.first_name }}
         on {{ object.posted }}</p>
 
       <p>
-        {{ object.body|truncatewords:"50" }}
+        {{ object.body|safe|truncatewords:word_limit }}
       </p>
     </div>
     <hr>
