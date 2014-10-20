@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.views.generic import DetailView, ListView
 
 from blog.models import Entry, Category
@@ -28,6 +29,13 @@ class EntryListView(ListView):
     paginate_by = 2
     queryset = Entry.objects.filter(published=True).order_by('-posted')
     template_name = 'blog/entry_list.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(EntryListView, self).get_context_data()
+        word_limit = str(getattr(settings, 'BLOG_WORD_LIMIT', 50))
+        context['word_limit'] = word_limit
+
+        return context
 
 
 class CategoryDetailView(DetailView):
